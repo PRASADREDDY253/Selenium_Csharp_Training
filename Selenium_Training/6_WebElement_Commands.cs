@@ -18,13 +18,11 @@ namespace Selenium_Training
             driver.Url = "https://demoqa.com/automation-practice-form";
             driver.Manage().Window.Maximize();
 
-            
-            IWebElement firstNameEle = driver.FindElement(By.Id("firstName"));
 
-            // 1.Sendkeys
+            IWebElement firstNameEle = driver.FindElement(By.Id("firstName3"));
+
             firstNameEle.SendKeys("Sai");
-
-            // 2.Clear
+             // 2.Clear
             firstNameEle.Clear();
 
             // 3.Selected

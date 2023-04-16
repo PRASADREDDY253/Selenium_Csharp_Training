@@ -5,44 +5,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
 
 namespace Selenium_Training
 {
-
-    internal class _11_Broken_Links
+    internal class _11_2_Broken_Images
     {
+
         [Test]
-        public async Task BrokenLinksTestAsync()
+        public async Task BrokenImagesTest()
         {
             // Initialize the driver
             WebDriver driver = new ChromeDriver();
-            driver.Url = "https://demoqa.com/broken";      //"http://www.deadlinkcity.com/";
+            driver.Url = "https://the-internet.herokuapp.com/broken_images";
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
-            // 1.Total no of links
-            var links = driver.FindElements(By.TagName("a"));
-            Console.WriteLine("Link count: " + links.Count);
+            // 1.Total no of images
+            var images = driver.FindElements(By.TagName("img"));
+            Console.WriteLine("Images count: " + images.Count);
             using var client = new HttpClient();
+            int broken_images = 0, valid_images = 0;
 
-            int valid_links = 0, broken_links = 0;
-            // 2.Get the href attribute(Url) of all links
-            foreach (var link in links)
+            foreach (var image in images)
             {
                 try
                 {
-                    string url = link.GetAttribute("href");
+                    string url = image.GetAttribute("src");
                     var response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode == false)
 
                     {
-                        Console.WriteLine("Invalid Url:" + url);
-                        broken_links++;
+                        broken_images++;
                     }
                     else
                     {
-                        valid_links++;
+                        valid_images++;
                     }
 
                 }
@@ -50,8 +47,8 @@ namespace Selenium_Training
                 catch (Exception e) { Console.WriteLine(e.Message); }
 
             }
-            Console.WriteLine("Total no of valid links=" + valid_links);
-            Console.WriteLine("Total no of Broken links=" + broken_links);
+            Console.WriteLine("Total no of valid images=" + valid_images);
+            Console.WriteLine("Total no of Broken images=" + broken_images);
 
             driver.Quit();
         }
