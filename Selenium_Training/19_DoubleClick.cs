@@ -11,30 +11,32 @@ using SeleniumExtras.WaitHelpers;
 
 namespace Selenium_Training
 {
-    internal class _17_MouseHover
+    internal class _18_DoubletClick
     {
         [Test]
-        public void MouseHoverTest()
+        public void DoubleClickTest()
         {
             // Initialize the driver
             WebDriver driver = new ChromeDriver();
-            driver.Url = "https://demo.automationtesting.in/Register.html";
+            driver.Url = "https://demo.guru99.com/test/simple_context_menu.html";
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
-            var switchToEle= driver.FindElement(By.LinkText("SwitchTo"));
+            IWebElement doubleClick_Button = driver.FindElement(By.XPath("//button[normalize-space()='Double-Click Me To See Alert']"));
 
             Actions actions = new Actions(driver);
 
-            //mouse hover,right click,drag drop,double click,sliding(Slider),page scrolling,key board actions
-            actions.MoveToElement(switchToEle).Perform();
+            actions.DoubleClick(doubleClick_Button).Perform();
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.LinkText("Alerts")));
+            wait.Until(ExpectedConditions.AlertIsPresent());
 
-            driver.FindElement(By.LinkText("Alerts")).Click();
+            IAlert alert= driver.SwitchTo().Alert();
+            Assert.True(alert.Text.Contains("double clicked me"));
+            alert.Accept();
 
             driver.Quit();
+
         }
     }
 }
