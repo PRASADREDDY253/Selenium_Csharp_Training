@@ -13,7 +13,7 @@ namespace Selenium_Training
     {
 
         [Test]
-        public void LinksTest()
+        public void DropdownTest()
         {
             // Initialize the driver
             WebDriver driver = new ChromeDriver();

@@ -27,6 +27,7 @@ namespace Selenium_Training
             Actions actions = new Actions(driver);
 
             actions.DoubleClick(doubleClick_Button).Perform();
+            
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             wait.Until(ExpectedConditions.AlertIsPresent());

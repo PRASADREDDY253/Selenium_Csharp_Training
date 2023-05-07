@@ -12,7 +12,7 @@ namespace Selenium_Training
     internal class _22_Page_Scrolling
     {
         [Test]
-        public void DoubleClickTest()
+        public void PageScrollingTest()
         {
             // Initialize the driver
             WebDriver driver = new ChromeDriver();
