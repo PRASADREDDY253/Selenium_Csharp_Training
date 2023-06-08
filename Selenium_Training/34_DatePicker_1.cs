@@ -11,6 +11,7 @@ namespace Selenium_Training
 {
     internal class _34_DatePicker_1
     {
+        
         [Test]
         public void DatePicker1Test()
         {
