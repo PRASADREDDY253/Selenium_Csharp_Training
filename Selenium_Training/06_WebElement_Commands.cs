@@ -20,7 +20,7 @@ namespace Selenium_Training
 
 
             IWebElement firstNameEle = driver.FindElement(By.Id("firstName3"));
-
+            // 1.SendKeys()
             firstNameEle.SendKeys("Sai");
              // 2.Clear
             firstNameEle.Clear();
